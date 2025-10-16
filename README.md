@@ -65,10 +65,7 @@ Note: Installing PyTorch can take time and may require extra system libraries; s
 
 ```bash
 python -m venv .venv
-# Windows PowerShell
 . .venv\Scripts\Activate.ps1
-# macOS/Linux (bash)
-source .venv/bin/activate
 ```
 
 2) Install dependencies:
@@ -85,7 +82,6 @@ python backend/app.py
 
 - The server starts at: http://127.0.0.1:5000/
 - The root route `/` serves `backend/templates/index.html`.
-- Styles are served from `/style.css` mapped to `backend/templates/style.css`.
 
 ---
 
@@ -100,43 +96,15 @@ Tip: If no voices appear initially, wait a second; the page listens for `onvoice
 
 ---
 
-## API
-
-Base URL: `http://127.0.0.1:5000`
-
-- POST `/nn_params`
-  - Body: `{ "text": "your text" }`
-  - Response: `{ "pitch": <float>, "rate": <float> }` in browser-friendly ranges `[0.5, 2.0]`.
-
-- POST `/nn_language`
-  - Body: `{ "text": "your text" }`
-  - Response: `{ "language": "en|hi|es|hinglish", "scores": {"en": p, ...} }`
-
-### cURL examples
-
-```bash
-curl -s -X POST http://127.0.0.1:5000/nn_params \
-  -H "Content-Type: application/json" \
-  -d '{"text":"Hello world!"}'
-
-curl -s -X POST http://127.0.0.1:5000/nn_language \
-  -H "Content-Type: application/json" \
-  -d '{"text":"Hola señor!"}'
-```
-
----
-
 ## How it works
 
 - Frontend (`templates/index.html`):
   - Uses `window.speechSynthesis` and `SpeechSynthesisUtterance` to speak locally.
   - Populates voices via `speechSynthesis.getVoices()`.
-  - Sends optional requests to Flask for suggested params and language detection.
 
 - Backend (`app.py`):
   - `/` serves the UI.
-  - `/style.css` serves the stylesheet from `templates/` without changing the HTML.
-  - `/nn_params` and `/nn_language` accept JSON `{text}` and call helpers in `model.py`.
+  - `/nn_params` and `/nn_language` accept JSON `{text}` 
 
 - Models (`model.py`):
   - `predict_params(text)` uses a tiny untrained NN to map simple text features to `[pitch, rate]`.
@@ -164,9 +132,6 @@ These are demo-quality models meant for UX prototyping; they are deterministic a
 ## Extending
 
 - Replace the helper models with your own trained models and load weights.
-- Add server-side TTS (e.g., edge-tts, Coqui TTS) if you need consistent voices across browsers.
 - Persist user presets in localStorage and add more controls (volume, pause/resume UI).
-- Containerize (Docker) or deploy behind a production server (gunicorn + reverse proxy).
-
----
+- Containerize (Docker) or deploy behind a production server.
 
