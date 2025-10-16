@@ -55,8 +55,6 @@ Python packages (from `backend/requirements.txt`):
 - flask-cors>=4.0.0
 - torch>=2.1.0
 
-Note: Installing PyTorch can take time and may require extra system libraries; see https://pytorch.org for platform-specific wheels if `pip install` is slow or fails.
-
 ---
 
 ## Setup
