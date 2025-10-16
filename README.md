@@ -1,4 +1,4 @@
-# Text2Speech (Multi-language UI + Tiny NN Backend)
+# Text2Speech with Intuitive UI having Multi-language Support
 
 A minimal Flask backend with a simple HTML/CSS/JS frontend for Text-to-Speech (TTS). The frontend uses the browser's Web Speech API to synthesize speech locally. The backend provides two optional neural helpers built with PyTorch:
 
