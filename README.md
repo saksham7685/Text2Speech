@@ -170,6 +170,3 @@ These are demo-quality models meant for UX prototyping; they are deterministic a
 
 ---
 
-## License
-
-MIT (or your preferred license). Update this section as needed.
