@@ -15,12 +15,12 @@ The UI lets you pick a voice, adjust pitch and rate, and speak your text. A help
 Text2speech/
 ├─ backend/
 │  ├─ app.py                 # Flask app, routes and CORS
-│  ├─ model.py               # Tiny PyTorch models for params + language
+│  ├─ model.py               # PyTorch models for params + language
 │  ├─ requirements.txt       # Python dependencies
 │  └─ templates/
 │     ├─ index.html          # Frontend (Web Speech API)
 │     └─ style.css           # Frontend styles
-└─ README.md                 # This file
+└─ README.md                
 ```
 
 ---
@@ -118,9 +118,6 @@ These are demo-quality models meant for UX prototyping; they are deterministic a
   - Use Chrome/Edge desktop. Some browsers restrict the Web Speech API.
   - Ensure system TTS voices are installed (OS-dependent).
   - If speech starts but is silent after repeated clicks, the code calls `synth.cancel()` before speaking to avoid queue buildup; try again.
-
-- PyTorch install issues
-  - Check https://pytorch.org/get-started/locally/ for a wheel compatible with your Python version and GPU/CPU.
 
 - CORS / Fetch errors
   - `flask-cors` is enabled via `CORS(app)`. Ensure you are calling the same origin `http://127.0.0.1:5000` from the page.
